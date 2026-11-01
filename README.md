@@ -8,7 +8,7 @@
 
 **A lightweight, private, and fluid Windows 11 clipboard manager engineered with .NET 9, native Win32 events, and Linux-inspired micro-animations.**
 
-[![Build & Test](https://github.com/Venarus/ClipFlow/actions/workflows/ci.yml/badge.svg)](https://github.com/Venarus/ClipFlow/actions/workflows/ci.yml)
+[![GitHub Release](https://img.shields.io/github/v/release/Venarus/ClipFlow?color=0078D4&logo=github)](https://github.com/Venarus/ClipFlow/releases)
 [![.NET Version](https://img.shields.io/badge/.NET-9.0%20(x64)-512BD4?logo=dotnet&logoColor=white)](https://dotnet.microsoft.com/)
 [![Windows 11 Fluent](https://img.shields.io/badge/Design-Windows%2011%20Fluent%20Mica-0078D4?logo=windows11&logoColor=white)](https://learn.microsoft.com/en-us/windows/apps/design/style/mica)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
@@ -176,9 +176,9 @@ ClipFlow/
 │   ├── ISSUE_TEMPLATE/
 │   │   ├── bug_report.md
 │   │   └── feature_request.md
-│   ├── PULL_REQUEST_TEMPLATE.md
-│   └── workflows/
-│       └── ci.yml                     # Automated GitHub Actions CI workflow
+│   └── PULL_REQUEST_TEMPLATE.md
+├── build/
+│   └── ci-workflow.yml                # GitHub Actions CI workflow specification
 ├── ClipFlow.App/                      # WPF Presentation Layer
 │   ├── Assets/                       # Application icons (ICO, PNG)
 │   ├── Converters/                   # WPF Data Converters
