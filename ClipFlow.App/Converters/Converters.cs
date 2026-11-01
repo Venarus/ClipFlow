@@ -46,7 +46,14 @@ public class EqualityToBooleanConverter : IValueConverter
         return string.Equals(value.ToString(), parameter.ToString(), StringComparison.OrdinalIgnoreCase);
     }
 
-    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) => throw new NotImplementedException();
+    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        if (value is bool b && b && parameter != null)
+        {
+            return parameter.ToString()!;
+        }
+        return Binding.DoNothing;
+    }
 }
 
 public class ColorHexToBrushConverter : IValueConverter

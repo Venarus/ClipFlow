@@ -55,6 +55,7 @@ public class TrayIconManager : IDisposable
 
     private IntPtr _hwnd = IntPtr.Zero;
     private IntPtr _hIcon = IntPtr.Zero;
+    private Icon? _managedIcon;
     private bool _isAdded;
     private readonly ContextMenu _contextMenu;
 
@@ -74,8 +75,8 @@ public class TrayIconManager : IDisposable
             var stream = Application.GetResourceStream(new Uri("pack://application:,,,/ClipFlow.App;component/Assets/app-icon.ico"))?.Stream;
             if (stream != null)
             {
-                using var icon = new Icon(stream);
-                _hIcon = icon.Handle;
+                _managedIcon = new Icon(stream);
+                _hIcon = _managedIcon.Handle;
             }
             else
             {
@@ -131,5 +132,8 @@ public class TrayIconManager : IDisposable
             Shell_NotifyIcon(NIM_DELETE, ref nid);
             _isAdded = false;
         }
+
+        _managedIcon?.Dispose();
+        _managedIcon = null;
     }
 }

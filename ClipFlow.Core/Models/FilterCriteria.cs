@@ -6,6 +6,7 @@ public class FilterCriteria
 {
     public string? SearchQuery { get; set; }
     public ContentType? ContentType { get; set; }
+    public System.Collections.Generic.List<ContentType>? ContentTypes { get; set; }
     public string? Category { get; set; }
     public string? Tag { get; set; }
     public bool OnlyFavorites { get; set; }

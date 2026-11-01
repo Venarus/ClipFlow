@@ -223,6 +223,7 @@ public partial class MainWindow : Window
     {
         _isExplicitExit = true;
         Close();
+        Application.Current?.Shutdown();
     }
 
     private void TitleBar_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

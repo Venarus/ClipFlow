@@ -146,7 +146,18 @@ public class SqliteClipboardRepository : IClipboardStorageRepository, IDisposabl
             parameters.Add(new SqliteParameter("@search", $"%{filter.SearchQuery.Trim()}%"));
         }
 
-        if (filter.ContentType.HasValue)
+        if (filter.ContentTypes != null && filter.ContentTypes.Count > 0)
+        {
+            var typeParams = new List<string>();
+            for (int i = 0; i < filter.ContentTypes.Count; i++)
+            {
+                var paramName = $"@ctype_{i}";
+                typeParams.Add(paramName);
+                parameters.Add(new SqliteParameter(paramName, (int)filter.ContentTypes[i]));
+            }
+            query += $"AND ContentType IN ({string.Join(", ", typeParams)}) ";
+        }
+        else if (filter.ContentType.HasValue)
         {
             query += "AND ContentType = @contentType ";
             parameters.Add(new SqliteParameter("@contentType", (int)filter.ContentType.Value));
