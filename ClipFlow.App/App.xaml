@@ -1,0 +1,22 @@
+<Application x:Class="ClipFlow.App.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:converters="clr-namespace:ClipFlow.App.Converters">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles/Icons.xaml" />
+                <ResourceDictionary Source="Styles/FluentStyles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <!-- Converters -->
+            <converters:BooleanToVisibilityConverter x:Key="BoolToVis" />
+            <converters:BooleanToVisibilityConverter x:Key="InverseBoolToVis" Invert="True" />
+            <converters:NullToVisibilityConverter x:Key="NullToVis" />
+            <converters:NullToVisibilityConverter x:Key="InverseNullToVis" Invert="True" />
+            <converters:EqualityToBooleanConverter x:Key="EqualityToBool" />
+            <converters:ColorHexToBrushConverter x:Key="HexToBrush" />
+            <converters:ContentTypeToBadgeColorConverter x:Key="ContentTypeToBadgeColor" />
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

@@ -1,0 +1,23 @@
+## Visual Studio / .NET / C#
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+## Build outputs (installer distribution can be kept or built via build.ps1)
+# dist/
+# publish/
+
+## User runtime databases and configs
+*.db-shm
+*.db-wal
+
+## OS files
+Thumbs.db
+ehthumbs.db
+Desktop.ini

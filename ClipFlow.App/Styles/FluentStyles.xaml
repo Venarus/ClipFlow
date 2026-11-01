@@ -1,0 +1,347 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- Fonts -->
+    <FontFamily x:Key="FluentFont">Segoe UI Variable Text, Segoe UI, Arial</FontFamily>
+    <FontFamily x:Key="FluentCodeFont">Cascadia Code, Consolas, Courier New</FontFamily>
+
+    <!-- Theme Colors (Dark default) -->
+    <Color x:Key="ColorBackground">#D00F172A</Color>
+    <Color x:Key="ColorSurface">#301E293B</Color>
+    <Color x:Key="ColorSurfaceHover">#50334155</Color>
+    <Color x:Key="ColorSurfaceActive">#60475569</Color>
+    <Color x:Key="ColorCardBorder">#25FFFFFF</Color>
+    <Color x:Key="ColorAccent">#3B82F6</Color>
+    <Color x:Key="ColorAccentHover">#2563EB</Color>
+    <Color x:Key="ColorTextPrimary">#F8FAFC</Color>
+    <Color x:Key="ColorTextSecondary">#94A3B8</Color>
+    <Color x:Key="ColorTextMuted">#64748B</Color>
+
+    <!-- Brushes -->
+    <SolidColorBrush x:Key="BrushBackground" Color="{StaticResource ColorBackground}" />
+    <SolidColorBrush x:Key="BrushSurface" Color="{StaticResource ColorSurface}" />
+    <SolidColorBrush x:Key="BrushSurfaceHover" Color="{StaticResource ColorSurfaceHover}" />
+    <SolidColorBrush x:Key="BrushSurfaceActive" Color="{StaticResource ColorSurfaceActive}" />
+    <SolidColorBrush x:Key="BrushCardBorder" Color="{StaticResource ColorCardBorder}" />
+    <SolidColorBrush x:Key="BrushAccent" Color="{StaticResource ColorAccent}" />
+    <SolidColorBrush x:Key="BrushAccentHover" Color="{StaticResource ColorAccentHover}" />
+    <SolidColorBrush x:Key="BrushTextPrimary" Color="{StaticResource ColorTextPrimary}" />
+    <SolidColorBrush x:Key="BrushTextSecondary" Color="{StaticResource ColorTextSecondary}" />
+    <SolidColorBrush x:Key="BrushTextMuted" Color="{StaticResource ColorTextMuted}" />
+
+    <!-- Fluent ScrollBar -->
+    <Style x:Key="FluentScrollBarThumb" TargetType="{x:Type Thumb}">
+        <Setter Property="OverridesDefaultStyle" Value="true" />
+        <Setter Property="IsTabStop" Value="false" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Thumb}">
+                    <Rectangle x:Name="thumbRect" Fill="#40FFFFFF" RadiusX="3" RadiusY="3" Margin="2" />
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter TargetName="thumbRect" Property="Fill" Value="#70FFFFFF" />
+                        </Trigger>
+                        <Trigger Property="IsDragging" Value="true">
+                            <Setter TargetName="thumbRect" Property="Fill" Value="#90FFFFFF" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type ScrollBar}">
+        <Setter Property="OverridesDefaultStyle" Value="true" />
+        <Setter Property="Width" Value="8" />
+        <Setter Property="MinWidth" Value="8" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ScrollBar}">
+                    <Grid Background="Transparent">
+                        <Track x:Name="PART_Track" IsDirectionReversed="true">
+                            <Track.Thumb>
+                                <Thumb Style="{StaticResource FluentScrollBarThumb}" />
+                            </Track.Thumb>
+                        </Track>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Fluent Primary Button -->
+    <Style x:Key="FluentPrimaryButton" TargetType="Button">
+        <Setter Property="Background" Value="{StaticResource BrushAccent}" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="FontFamily" Value="{StaticResource FluentFont}" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="Padding" Value="14,8" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="border"
+                            Background="{TemplateBinding Background}"
+                            CornerRadius="6"
+                            Padding="{TemplateBinding Padding}">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="{StaticResource BrushAccentHover}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="border" Property="Opacity" Value="0.85" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="border" Property="Opacity" Value="0.4" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Fluent Subtle Ghost Button -->
+    <Style x:Key="FluentSubtleButton" TargetType="Button">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="{StaticResource BrushTextPrimary}" />
+        <Setter Property="FontFamily" Value="{StaticResource FluentFont}" />
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="Padding" Value="12,7" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="BorderBrush" Value="{StaticResource BrushCardBorder}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="border"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="6"
+                            Padding="{TemplateBinding Padding}">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="#25FFFFFF" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="#35FFFFFF" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Fluent Icon Action Button -->
+    <Style x:Key="FluentIconButton" TargetType="Button">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="{StaticResource BrushTextSecondary}" />
+        <Setter Property="Padding" Value="6" />
+        <Setter Property="Width" Value="32" />
+        <Setter Property="Height" Value="32" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="border"
+                            Background="{TemplateBinding Background}"
+                            CornerRadius="6">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="#20FFFFFF" />
+                            <Setter Property="Foreground" Value="{StaticResource BrushTextPrimary}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="#30FFFFFF" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Window Titlebar Button -->
+    <Style x:Key="FluentTitlebarButton" TargetType="Button">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="{StaticResource BrushTextSecondary}" />
+        <Setter Property="Width" Value="46" />
+        <Setter Property="Height" Value="32" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="border" Background="{TemplateBinding Background}">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="#25FFFFFF" />
+                            <Setter Property="Foreground" Value="White" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="#35FFFFFF" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="FluentCloseTitlebarButton" TargetType="Button" BasedOn="{StaticResource FluentTitlebarButton}">
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#E81123" />
+                <Setter Property="Foreground" Value="White" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- Fluent Search TextBox -->
+    <Style x:Key="FluentSearchBox" TargetType="TextBox">
+        <Setter Property="Background" Value="#251E293B" />
+        <Setter Property="Foreground" Value="{StaticResource BrushTextPrimary}" />
+        <Setter Property="CaretBrush" Value="{StaticResource BrushAccent}" />
+        <Setter Property="BorderBrush" Value="{StaticResource BrushCardBorder}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="FontFamily" Value="{StaticResource FluentFont}" />
+        <Setter Property="Padding" Value="34,8,12,8" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="TextBox">
+                    <Grid>
+                        <Border x:Name="border"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="8">
+                            <ScrollViewer x:Name="PART_ContentHost" Margin="0" VerticalAlignment="Center" />
+                        </Border>
+                        <!-- Search Icon Prefix -->
+                        <Path Data="{StaticResource IconSearch}"
+                              Fill="{StaticResource BrushTextMuted}"
+                              Width="14" Height="14"
+                              Stretch="Uniform"
+                              HorizontalAlignment="Left"
+                              VerticalAlignment="Center"
+                              Margin="12,0,0,0"
+                              IsHitTestVisible="False" />
+                        <!-- Watermark -->
+                        <TextBlock Text="Search clipboard history (text, links, code, tags)..."
+                                   Foreground="{StaticResource BrushTextMuted}"
+                                   FontFamily="{StaticResource FluentFont}"
+                                   FontSize="13"
+                                   VerticalAlignment="Center"
+                                   Margin="34,0,12,0"
+                                   IsHitTestVisible="False">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Text, RelativeSource={RelativeSource TemplatedParent}}" Value="">
+                                            <Setter Property="Visibility" Value="Visible" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="border" Property="BorderBrush" Value="#40FFFFFF" />
+                        </Trigger>
+                        <Trigger Property="IsKeyboardFocused" Value="True">
+                            <Setter TargetName="border" Property="BorderBrush" Value="{StaticResource BrushAccent}" />
+                            <Setter TargetName="border" Property="Background" Value="#351E293B" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Fluent Standard Input TextBox -->
+    <Style x:Key="FluentInputTextBox" TargetType="TextBox">
+        <Setter Property="Background" Value="#251E293B" />
+        <Setter Property="Foreground" Value="{StaticResource BrushTextPrimary}" />
+        <Setter Property="CaretBrush" Value="{StaticResource BrushAccent}" />
+        <Setter Property="BorderBrush" Value="{StaticResource BrushCardBorder}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="FontFamily" Value="{StaticResource FluentFont}" />
+        <Setter Property="Padding" Value="10,6" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="TextBox">
+                    <Border x:Name="border"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="6">
+                        <ScrollViewer x:Name="PART_ContentHost" Margin="0" VerticalAlignment="Center" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsKeyboardFocused" Value="True">
+                            <Setter TargetName="border" Property="BorderBrush" Value="{StaticResource BrushAccent}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Fluent Navigation Sidebar Button -->
+    <Style x:Key="FluentNavButton" TargetType="RadioButton">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="{StaticResource BrushTextSecondary}" />
+        <Setter Property="FontFamily" Value="{StaticResource FluentFont}" />
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="Height" Value="38" />
+        <Setter Property="Margin" Value="4,2" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="RadioButton">
+                    <Border x:Name="border"
+                            Background="{TemplateBinding Background}"
+                            CornerRadius="6"
+                            Padding="12,0">
+                        <Grid>
+                            <!-- Selection pill indicator on left -->
+                            <Rectangle x:Name="pill"
+                                       Fill="{StaticResource BrushAccent}"
+                                       Width="3" Height="16"
+                                       RadiusX="1.5" RadiusY="1.5"
+                                       HorizontalAlignment="Left"
+                                       VerticalAlignment="Center"
+                                       Margin="-6,0,0,0"
+                                       Visibility="Collapsed" />
+                            <ContentPresenter VerticalAlignment="Center" Margin="6,0,0,0" />
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="#15FFFFFF" />
+                            <Setter Property="Foreground" Value="{StaticResource BrushTextPrimary}" />
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="#253B82F6" />
+                            <Setter Property="Foreground" Value="White" />
+                            <Setter TargetName="pill" Property="Visibility" Value="Visible" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>
