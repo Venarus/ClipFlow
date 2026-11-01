@@ -11,8 +11,10 @@
     <RootNamespace>ClipFlow.App</RootNamespace>
     <Product>ClipFlow — Smart Clipboard Manager</Product>
     <Version>1.0.0</Version>
+    <Authors>Venarus</Authors>
     <Company>ClipFlow</Company>
     <Description>Modern, lightweight, private Windows 11 clipboard manager.</Description>
+    <RepositoryUrl>https://github.com/Venarus/ClipFlow</RepositoryUrl>
     <TieredCompilation>true</TieredCompilation>
     <TieredPGO>true</TieredPGO>
     <ServerGarbageCollection>false</ServerGarbageCollection>

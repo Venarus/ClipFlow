@@ -1,5 +1,18 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
+  <PropertyGroup>
+    <TargetFramework>net9.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <Authors>Venarus</Authors>
+    <Company>ClipFlow</Company>
+    <Product>ClipFlow Infrastructure</Product>
+    <Description>SQLite WAL repository, Win32 clipboard monitoring, and security services for ClipFlow.</Description>
+    <Version>1.0.0</Version>
+    <RepositoryUrl>https://github.com/Venarus/ClipFlow</RepositoryUrl>
+  </PropertyGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\ClipFlow.Core\ClipFlow.Core.csproj" />
   </ItemGroup>
@@ -8,12 +21,5 @@
     <PackageReference Include="Microsoft.Data.Sqlite" Version="10.0.14" />
     <PackageReference Include="System.Drawing.Common" Version="10.0.14" />
   </ItemGroup>
-
-  <PropertyGroup>
-    <TargetFramework>net9.0-windows</TargetFramework>
-    <UseWPF>true</UseWPF>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
 
 </Project>

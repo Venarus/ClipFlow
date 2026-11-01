@@ -45,8 +45,8 @@ if (-not $SkipTests) {
 
 # 4. Publish App
 Write-Host ""
-Write-Host "[4/4] Publishing Application (win-x64)..." -ForegroundColor Yellow
-dotnet publish ClipFlow.App\ClipFlow.App.csproj -c Release -r win-x64 --self-contained false -o .\publish
+Write-Host "[4/4] Publishing Application (win-x64, self-contained)..." -ForegroundColor Yellow
+dotnet publish ClipFlow.App\ClipFlow.App.csproj -c Release -r win-x64 --self-contained true -o .\publish
 if ($LASTEXITCODE -ne 0) {
     Write-Error "Publishing failed!"
     exit 1
