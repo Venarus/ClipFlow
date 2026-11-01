@@ -174,7 +174,8 @@
                                            Margin="12,6,0,6" />
 
                                 <RadioButton Style="{StaticResource FluentNavButton}"
-                                             IsChecked="{Binding CurrentSection, Converter={StaticResource EqualityToBool}, ConverterParameter=All}"
+                                             GroupName="SidebarSections"
+                                             IsChecked="{Binding CurrentSection, Mode=TwoWay, Converter={StaticResource EqualityToBool}, ConverterParameter=All}"
                                              Command="{Binding SelectSectionCommand}" CommandParameter="All">
                                     <StackPanel Orientation="Horizontal">
                                         <Path Data="{StaticResource IconAll}" Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType=RadioButton}}" Width="14" Height="14" Stretch="Uniform" Margin="0,0,10,0" />
@@ -183,7 +184,8 @@
                                 </RadioButton>
 
                                 <RadioButton Style="{StaticResource FluentNavButton}"
-                                             IsChecked="{Binding CurrentSection, Converter={StaticResource EqualityToBool}, ConverterParameter=Text}"
+                                             GroupName="SidebarSections"
+                                             IsChecked="{Binding CurrentSection, Mode=TwoWay, Converter={StaticResource EqualityToBool}, ConverterParameter=Text}"
                                              Command="{Binding SelectSectionCommand}" CommandParameter="Text">
                                     <StackPanel Orientation="Horizontal">
                                         <Path Data="{StaticResource IconText}" Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType=RadioButton}}" Width="14" Height="14" Stretch="Uniform" Margin="0,0,10,0" />
@@ -192,7 +194,8 @@
                                 </RadioButton>
 
                                 <RadioButton Style="{StaticResource FluentNavButton}"
-                                             IsChecked="{Binding CurrentSection, Converter={StaticResource EqualityToBool}, ConverterParameter=Images}"
+                                             GroupName="SidebarSections"
+                                             IsChecked="{Binding CurrentSection, Mode=TwoWay, Converter={StaticResource EqualityToBool}, ConverterParameter=Images}"
                                              Command="{Binding SelectSectionCommand}" CommandParameter="Images">
                                     <StackPanel Orientation="Horizontal">
                                         <Path Data="{StaticResource IconImage}" Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType=RadioButton}}" Width="14" Height="14" Stretch="Uniform" Margin="0,0,10,0" />
@@ -201,7 +204,8 @@
                                 </RadioButton>
 
                                 <RadioButton Style="{StaticResource FluentNavButton}"
-                                             IsChecked="{Binding CurrentSection, Converter={StaticResource EqualityToBool}, ConverterParameter=Links}"
+                                             GroupName="SidebarSections"
+                                             IsChecked="{Binding CurrentSection, Mode=TwoWay, Converter={StaticResource EqualityToBool}, ConverterParameter=Links}"
                                              Command="{Binding SelectSectionCommand}" CommandParameter="Links">
                                     <StackPanel Orientation="Horizontal">
                                         <Path Data="{StaticResource IconLink}" Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType=RadioButton}}" Width="14" Height="14" Stretch="Uniform" Margin="0,0,10,0" />
@@ -210,7 +214,8 @@
                                 </RadioButton>
 
                                 <RadioButton Style="{StaticResource FluentNavButton}"
-                                             IsChecked="{Binding CurrentSection, Converter={StaticResource EqualityToBool}, ConverterParameter=Files}"
+                                             GroupName="SidebarSections"
+                                             IsChecked="{Binding CurrentSection, Mode=TwoWay, Converter={StaticResource EqualityToBool}, ConverterParameter=Files}"
                                              Command="{Binding SelectSectionCommand}" CommandParameter="Files">
                                     <StackPanel Orientation="Horizontal">
                                         <Path Data="{StaticResource IconFolder}" Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType=RadioButton}}" Width="14" Height="14" Stretch="Uniform" Margin="0,0,10,0" />
@@ -224,7 +229,8 @@
                                            Margin="12,18,0,6" />
 
                                 <RadioButton Style="{StaticResource FluentNavButton}"
-                                             IsChecked="{Binding CurrentSection, Converter={StaticResource EqualityToBool}, ConverterParameter=Favorites}"
+                                             GroupName="SidebarSections"
+                                             IsChecked="{Binding CurrentSection, Mode=TwoWay, Converter={StaticResource EqualityToBool}, ConverterParameter=Favorites}"
                                              Command="{Binding SelectSectionCommand}" CommandParameter="Favorites">
                                     <StackPanel Orientation="Horizontal">
                                         <Path Data="{StaticResource IconStar}" Fill="#EAB308" Width="14" Height="14" Stretch="Uniform" Margin="0,0,10,0" />
@@ -233,7 +239,8 @@
                                 </RadioButton>
 
                                 <RadioButton Style="{StaticResource FluentNavButton}"
-                                             IsChecked="{Binding CurrentSection, Converter={StaticResource EqualityToBool}, ConverterParameter=Pinned}"
+                                             GroupName="SidebarSections"
+                                             IsChecked="{Binding CurrentSection, Mode=TwoWay, Converter={StaticResource EqualityToBool}, ConverterParameter=Pinned}"
                                              Command="{Binding SelectSectionCommand}" CommandParameter="Pinned">
                                     <StackPanel Orientation="Horizontal">
                                         <Path Data="{StaticResource IconPin}" Fill="{StaticResource BrushAccent}" Width="14" Height="14" Stretch="Uniform" Margin="0,0,10,0" />
@@ -242,7 +249,8 @@
                                 </RadioButton>
 
                                 <RadioButton Style="{StaticResource FluentNavButton}"
-                                             IsChecked="{Binding CurrentSection, Converter={StaticResource EqualityToBool}, ConverterParameter=RecentlyUsed}"
+                                             GroupName="SidebarSections"
+                                             IsChecked="{Binding CurrentSection, Mode=TwoWay, Converter={StaticResource EqualityToBool}, ConverterParameter=RecentlyUsed}"
                                              Command="{Binding SelectSectionCommand}" CommandParameter="RecentlyUsed">
                                     <StackPanel Orientation="Horizontal">
                                         <Path Data="{StaticResource IconRecent}" Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType=RadioButton}}" Width="14" Height="14" Stretch="Uniform" Margin="0,0,10,0" />
@@ -255,8 +263,9 @@
                         <!-- Bottom Settings & Stats -->
                         <StackPanel Grid.Row="1" Margin="0,8,0,0">
                             <RadioButton Style="{StaticResource FluentNavButton}"
-                                         IsChecked="{Binding IsSettingsOpen}"
-                                         Command="{Binding OpenSettingsCommand}">
+                                         GroupName="SidebarSections"
+                                         IsChecked="{Binding IsSettingsOpen, Mode=TwoWay}"
+                                         Command="{Binding SelectSectionCommand}" CommandParameter="Settings">
                                 <StackPanel Orientation="Horizontal">
                                     <Path Data="{StaticResource IconSettings}" Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType=RadioButton}}" Width="14" Height="14" Stretch="Uniform" Margin="0,0,10,0" />
                                     <TextBlock Text="Settings" />
@@ -279,6 +288,7 @@
                 <Grid Grid.Column="1" Margin="12,10">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" /> <!-- Search and Quick Filter Bar -->
+                        <RowDefinition Height="Auto" /> <!-- Active Section Title & Stats Banner -->
                         <RowDefinition Height="Auto" /> <!-- Multi-select Bar (if active) -->
                         <RowDefinition Height="*" />    <!-- Virtualized History List -->
                     </Grid.RowDefinitions>
@@ -317,8 +327,25 @@
                         </Button>
                     </Grid>
 
+                    <!-- Active Section Title Banner -->
+                    <Grid Grid.Row="1" Margin="4,0,4,8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <TextBlock Text="{Binding SectionDisplayName}"
+                                       FontSize="15" FontWeight="Bold"
+                                       Foreground="{StaticResource BrushTextPrimary}" />
+                            <Border Background="#203B82F6" CornerRadius="10" Padding="8,2" Margin="10,0,0,0" VerticalAlignment="Center">
+                                <TextBlock Text="{Binding Items.Count, StringFormat='{}{0} items'}"
+                                           FontSize="11" FontWeight="SemiBold" Foreground="{StaticResource BrushAccent}" />
+                            </Border>
+                        </StackPanel>
+                    </Grid>
+
                     <!-- Multi-select Action Bar -->
-                    <Border Grid.Row="1"
+                    <Border Grid.Row="2"
                             Background="#253B82F6"
                             BorderBrush="{StaticResource BrushCardBorder}"
                             BorderThickness="1"
@@ -344,7 +371,7 @@
                     </Border>
 
                     <!-- Virtualized History List -->
-                    <ListBox Grid.Row="2"
+                    <ListBox Grid.Row="3"
                              ItemsSource="{Binding Items}"
                              SelectedItem="{Binding SelectedItem}"
                              Background="Transparent"
@@ -369,18 +396,80 @@
                                                     BorderBrush="#20FFFFFF"
                                                     BorderThickness="1"
                                                     CornerRadius="8"
-                                                    Padding="12,10"
-                                                    ContextMenu="{StaticResource ItemContextMenu}">
-                                                <ContentPresenter />
+                                                    Padding="10,8"
+                                                    ContextMenu="{StaticResource ItemContextMenu}"
+                                                    RenderTransformOrigin="0.5,0.5">
+                                                <Border.RenderTransform>
+                                                    <TransformGroup>
+                                                        <ScaleTransform x:Name="cardScale" ScaleX="1.0" ScaleY="1.0" />
+                                                        <TranslateTransform x:Name="cardTranslate" X="0" />
+                                                    </TransformGroup>
+                                                </Border.RenderTransform>
+                                                <Grid>
+                                                    <!-- Left selection indicator pill -->
+                                                    <Rectangle x:Name="activeBar"
+                                                               Fill="{StaticResource BrushAccent}"
+                                                               Width="3" Height="0"
+                                                               RadiusX="1.5" RadiusY="1.5"
+                                                               HorizontalAlignment="Left"
+                                                               VerticalAlignment="Center"
+                                                               Margin="-10,0,0,0"
+                                                               Opacity="0" />
+                                                    <ContentPresenter />
+                                                </Grid>
                                             </Border>
                                             <ControlTemplate.Triggers>
+                                                <!-- Linux / GNOME Fluid Hover Animation -->
                                                 <Trigger Property="IsMouseOver" Value="True">
                                                     <Setter TargetName="ItemCard" Property="Background" Value="#33334155" />
-                                                    <Setter TargetName="ItemCard" Property="BorderBrush" Value="#40FFFFFF" />
+                                                    <Setter TargetName="ItemCard" Property="BorderBrush" Value="#603B82F6" />
+                                                    <Trigger.EnterActions>
+                                                        <BeginStoryboard>
+                                                            <Storyboard>
+                                                                <DoubleAnimation Storyboard.TargetName="cardTranslate" Storyboard.TargetProperty="X"
+                                                                                 To="3.5" Duration="0:0:0.16">
+                                                                    <DoubleAnimation.EasingFunction>
+                                                                        <CubicEase EasingMode="EaseOut" />
+                                                                    </DoubleAnimation.EasingFunction>
+                                                                </DoubleAnimation>
+                                                                <DoubleAnimation Storyboard.TargetName="cardScale" Storyboard.TargetProperty="ScaleX"
+                                                                                 To="1.01" Duration="0:0:0.16">
+                                                                    <DoubleAnimation.EasingFunction>
+                                                                        <CubicEase EasingMode="EaseOut" />
+                                                                    </DoubleAnimation.EasingFunction>
+                                                                </DoubleAnimation>
+                                                                <DoubleAnimation Storyboard.TargetName="cardScale" Storyboard.TargetProperty="ScaleY"
+                                                                                 To="1.01" Duration="0:0:0.16">
+                                                                    <DoubleAnimation.EasingFunction>
+                                                                        <CubicEase EasingMode="EaseOut" />
+                                                                    </DoubleAnimation.EasingFunction>
+                                                                </DoubleAnimation>
+                                                            </Storyboard>
+                                                        </BeginStoryboard>
+                                                    </Trigger.EnterActions>
+                                                    <Trigger.ExitActions>
+                                                        <BeginStoryboard>
+                                                            <Storyboard>
+                                                                <DoubleAnimation Storyboard.TargetName="cardTranslate" Storyboard.TargetProperty="X"
+                                                                                 To="0" Duration="0:0:0.14">
+                                                                    <DoubleAnimation.EasingFunction>
+                                                                        <CubicEase EasingMode="EaseOut" />
+                                                                    </DoubleAnimation.EasingFunction>
+                                                                </DoubleAnimation>
+                                                                <DoubleAnimation Storyboard.TargetName="cardScale" Storyboard.TargetProperty="ScaleX"
+                                                                                 To="1.0" Duration="0:0:0.14" />
+                                                                <DoubleAnimation Storyboard.TargetName="cardScale" Storyboard.TargetProperty="ScaleY"
+                                                                                 To="1.0" Duration="0:0:0.14" />
+                                                            </Storyboard>
+                                                        </BeginStoryboard>
+                                                    </Trigger.ExitActions>
                                                 </Trigger>
+                                                <!-- Tactile Selected -->
                                                 <Trigger Property="IsSelected" Value="True">
-                                                    <Setter TargetName="ItemCard" Property="Background" Value="#303B82F6" />
+                                                    <Setter TargetName="ItemCard" Property="Background" Value="#323B82F6" />
                                                     <Setter TargetName="ItemCard" Property="BorderBrush" Value="{StaticResource BrushAccent}" />
+                                                    <Setter TargetName="activeBar" Property="Opacity" Value="1" />
+                                                    <Setter TargetName="activeBar" Property="Height" Value="24" />
                                                 </Trigger>
                                             </ControlTemplate.Triggers>
                                         </ControlTemplate>
@@ -406,75 +495,153 @@
                                               Margin="0,0,10,0"
                                               Visibility="{Binding DataContext.IsMultiSelectMode, RelativeSource={RelativeSource AncestorType=Window}, Converter={StaticResource BoolToVis}}" />
 
-                                    <!-- Thumbnail or Type Pill -->
+                                    <!-- Rich Thumbnail Preview Tile (46x46) -->
                                     <Border Grid.Column="1"
-                                            Width="38" Height="38"
-                                            CornerRadius="6"
+                                            Width="46" Height="46"
+                                            CornerRadius="8"
                                             Margin="0,0,12,0"
                                             VerticalAlignment="Center"
-                                            ClipToBounds="True">
-                                        <!-- Image preview if image -->
+                                            ClipToBounds="True"
+                                            Background="#251E293B"
+                                            BorderBrush="#25FFFFFF"
+                                            BorderThickness="1">
                                         <Grid>
+                                            <!-- 1. Real Image Thumbnail (if image or image file) -->
                                             <Image Source="{Binding ThumbnailSource}"
                                                    Stretch="UniformToFill"
-                                                   Visibility="{Binding HasImage, Converter={StaticResource BoolToVis}}" />
+                                                   RenderOptions.BitmapScalingMode="HighQuality"
+                                                   Visibility="{Binding HasImageThumbnail, Converter={StaticResource BoolToVis}}" />
 
-                                            <!-- Color swatch if color -->
-                                            <Border Background="{Binding ColorHex, Converter={StaticResource HexToBrush}}"
-                                                    Visibility="{Binding HasColorPreview, Converter={StaticResource BoolToVis}}" />
+                                            <!-- 2. System File Icon (if non-image file) -->
+                                            <Grid Visibility="{Binding HasSystemFileIcon, Converter={StaticResource BoolToVis}}">
+                                                <Image Source="{Binding ThumbnailSource}"
+                                                       Width="28" Height="28"
+                                                       Stretch="Uniform"
+                                                       HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                                <Border Background="#D00F172A" CornerRadius="3" Padding="3,0"
+                                                        HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,2,2">
+                                                    <TextBlock Text="{Binding FileExtension}" FontSize="8" FontWeight="Bold" Foreground="#38BDF8" />
+                                                </Border>
+                                            </Grid>
 
-                                            <!-- Default Type Badge -->
-                                            <Border Background="{Binding ContentType, Converter={StaticResource ContentTypeToBadgeColor}}"
-                                                    Opacity="0.25">
-                                                <Border.Style>
-                                                    <Style TargetType="Border">
+                                            <!-- 3. Color Swatch (if HEX/RGB) -->
+                                            <Grid Visibility="{Binding HasColorPreview, Converter={StaticResource BoolToVis}}">
+                                                <Border Background="#30FFFFFF" />
+                                                <Border Background="{Binding ColorHex, Converter={StaticResource HexToBrush}}" Margin="2" CornerRadius="6" />
+                                                <Border Background="#90000000" CornerRadius="3" Padding="3,1"
+                                                        HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,2">
+                                                    <TextBlock Text="{Binding ColorHex}" FontSize="8" FontWeight="SemiBold" Foreground="White" />
+                                                </Border>
+                                            </Grid>
+
+                                            <!-- 4. URL / Link Badge -->
+                                            <Grid Visibility="{Binding IsUrl, Converter={StaticResource BoolToVis}}">
+                                                <Border CornerRadius="7">
+                                                    <Border.Background>
+                                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                                            <GradientStop Color="#0284C7" Offset="0" />
+                                                            <GradientStop Color="#1D4ED8" Offset="1" />
+                                                        </LinearGradientBrush>
+                                                    </Border.Background>
+                                                    <Grid>
+                                                        <Path Data="{StaticResource IconLink}" Fill="White" Width="18" Height="18" Stretch="Uniform"
+                                                              HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,-4,0,0" />
+                                                        <Border Background="#80000000" CornerRadius="3" Padding="3,0"
+                                                                HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,2">
+                                                            <TextBlock Text="LINK" FontSize="8" FontWeight="Bold" Foreground="#E0F2FE" />
+                                                        </Border>
+                                                    </Grid>
+                                                </Border>
+                                            </Grid>
+
+                                            <!-- 5. Code Snippet Badge -->
+                                            <Grid Visibility="{Binding IsCode, Converter={StaticResource BoolToVis}}">
+                                                <Border Background="#1E1B4B" CornerRadius="7" BorderBrush="#7C3AED" BorderThickness="1">
+                                                    <Grid>
+                                                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                            <TextBlock Text="&lt;/&gt;" FontSize="13" FontWeight="Bold" Foreground="#A78BFA" HorizontalAlignment="Center" />
+                                                            <TextBlock Text="{Binding CodeLanguage}" FontSize="8" FontWeight="SemiBold" Foreground="#DDD6FE" HorizontalAlignment="Center" Margin="0,-2,0,0" />
+                                                        </StackPanel>
+                                                    </Grid>
+                                                </Border>
+                                            </Grid>
+
+                                            <!-- 6. File Drop Badge (fallback if no system icon) -->
+                                            <Grid>
+                                                <Grid.Style>
+                                                    <Style TargetType="Grid">
                                                         <Setter Property="Visibility" Value="Collapsed" />
                                                         <Style.Triggers>
                                                             <MultiDataTrigger>
                                                                 <MultiDataTrigger.Conditions>
-                                                                    <Condition Binding="{Binding HasImage}" Value="False" />
-                                                                    <Condition Binding="{Binding HasColorPreview}" Value="False" />
+                                                                    <Condition Binding="{Binding IsFileDrop}" Value="True" />
+                                                                    <Condition Binding="{Binding HasImageThumbnail}" Value="False" />
+                                                                    <Condition Binding="{Binding HasSystemFileIcon}" Value="False" />
                                                                 </MultiDataTrigger.Conditions>
                                                                 <Setter Property="Visibility" Value="Visible" />
                                                             </MultiDataTrigger>
                                                         </Style.Triggers>
                                                     </Style>
-                                                </Border.Style>
-                                            </Border>
+                                                </Grid.Style>
+                                                <Border Background="#C2410C" CornerRadius="7">
+                                                    <Grid>
+                                                        <Path Data="{StaticResource IconFolder}" Fill="White" Width="18" Height="18" Stretch="Uniform"
+                                                              HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,-4,0,0" />
+                                                        <Border Background="#80000000" CornerRadius="3" Padding="3,0"
+                                                                HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,2">
+                                                            <TextBlock Text="{Binding FileExtension}" FontSize="8" FontWeight="Bold" Foreground="#FED7AA" />
+                                                        </Border>
+                                                    </Grid>
+                                                </Border>
+                                            </Grid>
 
-                                            <!-- Inner Centered Type Text -->
-                                            <TextBlock Text="{Binding TypeDisplayName}"
-                                                       FontSize="10" FontWeight="Bold"
-                                                       Foreground="{Binding ContentType, Converter={StaticResource ContentTypeToBadgeColor}}"
-                                                       HorizontalAlignment="Center" VerticalAlignment="Center">
-                                                <TextBlock.Style>
-                                                    <Style TargetType="TextBlock">
+                                            <!-- 7. Plain Text Document Badge (with mini text lines preview!) -->
+                                            <Grid>
+                                                <Grid.Style>
+                                                    <Style TargetType="Grid">
                                                         <Setter Property="Visibility" Value="Collapsed" />
                                                         <Style.Triggers>
                                                             <MultiDataTrigger>
                                                                 <MultiDataTrigger.Conditions>
-                                                                    <Condition Binding="{Binding HasImage}" Value="False" />
+                                                                    <Condition Binding="{Binding HasImageThumbnail}" Value="False" />
+                                                                    <Condition Binding="{Binding HasSystemFileIcon}" Value="False" />
                                                                     <Condition Binding="{Binding HasColorPreview}" Value="False" />
+                                                                    <Condition Binding="{Binding IsUrl}" Value="False" />
+                                                                    <Condition Binding="{Binding IsCode}" Value="False" />
+                                                                    <Condition Binding="{Binding IsFileDrop}" Value="False" />
                                                                 </MultiDataTrigger.Conditions>
                                                                 <Setter Property="Visibility" Value="Visible" />
                                                             </MultiDataTrigger>
                                                         </Style.Triggers>
                                                     </Style>
-                                                </TextBlock.Style>
-                                            </TextBlock>
+                                                </Grid.Style>
+                                                <Border Background="#1E293B" CornerRadius="7" BorderBrush="#334155" BorderThickness="1" Padding="7,8">
+                                                    <StackPanel VerticalAlignment="Center">
+                                                        <Rectangle Fill="#94A3B8" Height="3" RadiusX="1.5" RadiusY="1.5" HorizontalAlignment="Left" Width="26" Margin="0,0,0,3.5" />
+                                                        <Rectangle Fill="#64748B" Height="2" RadiusX="1" RadiusY="1" HorizontalAlignment="Left" Width="30" Margin="0,0,0,2.5" />
+                                                        <Rectangle Fill="#64748B" Height="2" RadiusX="1" RadiusY="1" HorizontalAlignment="Left" Width="22" Margin="0,0,0,2.5" />
+                                                        <Rectangle Fill="#475569" Height="2" RadiusX="1" RadiusY="1" HorizontalAlignment="Left" Width="14" />
+                                                    </StackPanel>
+                                                </Border>
+                                            </Grid>
                                         </Grid>
                                     </Border>
 
                                     <!-- Content Text / Summary -->
                                     <StackPanel Grid.Column="2" VerticalAlignment="Center">
-                                        <TextBlock Text="{Binding Model.PreviewSummary}"
-                                                   FontSize="13"
+                                        <TextBlock Text="{Binding DisplayTitle}"
+                                                   FontSize="13" FontWeight="SemiBold"
                                                    Foreground="{StaticResource BrushTextPrimary}"
                                                    TextTrimming="CharacterEllipsis"
                                                    TextWrapping="NoWrap" />
 
                                         <!-- Subtitle: Time & Source App -->
                                         <StackPanel Orientation="Horizontal" Margin="0,3,0,0">
+                                            <Border Background="{Binding ContentType, Converter={StaticResource ContentTypeToBadgeColor}}"
+                                                    Opacity="0.25" CornerRadius="3" Padding="5,1" Margin="0,0,6,0">
+                                                <TextBlock Text="{Binding TypeDisplayName}" FontSize="10" FontWeight="Bold"
+                                                           Foreground="{Binding ContentType, Converter={StaticResource ContentTypeToBadgeColor}}" />
+                                            </Border>
                                             <TextBlock Text="{Binding RelativeTime}"
                                                        FontSize="11"
                                                        Foreground="{StaticResource BrushTextMuted}" />
@@ -484,6 +651,14 @@
                                             <TextBlock Text="{Binding SourceApplication, FallbackValue='Clipboard'}"
                                                        FontSize="11"
                                                        Foreground="{StaticResource BrushTextMuted}" />
+                                            <TextBlock Text=" • "
+                                                       FontSize="11"
+                                                       Foreground="{StaticResource BrushTextMuted}"
+                                                       Visibility="{Binding HasImage, Converter={StaticResource BoolToVis}}" />
+                                            <TextBlock Text="{Binding FormattedSize}"
+                                                       FontSize="11"
+                                                       Foreground="{StaticResource BrushTextMuted}"
+                                                       Visibility="{Binding HasImage, Converter={StaticResource BoolToVis}}" />
                                         </StackPanel>
                                     </StackPanel>
 
@@ -598,8 +773,8 @@
                                                    FontFamily="{StaticResource FluentCodeFont}" FontSize="12" Foreground="{StaticResource BrushTextSecondary}" Margin="0,2,0,0" />
                                     </StackPanel>
 
-                                    <!-- Image Preview (if Image) -->
-                                    <StackPanel Visibility="{Binding SelectedItem.HasImage, Converter={StaticResource BoolToVis}}" Margin="0,0,0,12">
+                                    <!-- Image Preview (if Image or Image File) -->
+                                    <StackPanel Visibility="{Binding SelectedItem.HasImageThumbnail, Converter={StaticResource BoolToVis}}" Margin="0,0,0,12">
                                         <Border MaxHeight="220" CornerRadius="8" Background="#10000000" ClipToBounds="True" Margin="0,0,0,8">
                                             <Image Source="{Binding SelectedItem.ThumbnailSource}" Stretch="Uniform" />
                                         </Border>
@@ -859,21 +1034,48 @@
                 </Grid>
             </Border>
 
-            <!-- 4. TOAST NOTIFICATION CARD -->
+            <!-- 4. TOAST NOTIFICATION CARD with Linux fluid bounce animation -->
             <Border Grid.Row="1"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Bottom"
-                    Background="#E61E293B"
-                    BorderBrush="{StaticResource BrushCardBorder}"
+                    Background="#F01E293B"
+                    BorderBrush="{StaticResource BrushAccent}"
                     BorderThickness="1"
-                    CornerRadius="8"
-                    Padding="16,8"
+                    CornerRadius="20"
+                    Padding="18,9"
                     Margin="0,0,0,24"
-                    Visibility="{Binding IsToastVisible, Converter={StaticResource BoolToVis}}">
+                    Visibility="{Binding IsToastVisible, Converter={StaticResource BoolToVis}}"
+                    RenderTransformOrigin="0.5,0.5">
                 <Border.Effect>
-                    <DropShadowEffect BlurRadius="15" ShadowDepth="2" Opacity="0.5" Color="Black" />
+                    <DropShadowEffect BlurRadius="20" ShadowDepth="4" Opacity="0.5" Color="#000000" />
                 </Border.Effect>
-                <TextBlock Text="{Binding ToastMessage}" Foreground="{StaticResource BrushTextPrimary}" FontSize="12" FontWeight="Medium" />
+                <Border.RenderTransform>
+                    <TranslateTransform x:Name="toastTrans" Y="0" />
+                </Border.RenderTransform>
+                <Border.Style>
+                    <Style TargetType="Border">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsToastVisible}" Value="True">
+                                <DataTrigger.EnterActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)"
+                                                             From="20" To="0" Duration="0:0:0.25">
+                                                <DoubleAnimation.EasingFunction>
+                                                    <BackEase EasingMode="EaseOut" Amplitude="0.5" />
+                                                </DoubleAnimation.EasingFunction>
+                                            </DoubleAnimation>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </DataTrigger.EnterActions>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <Path Data="{StaticResource IconCheck}" Fill="#22C55E" Width="13" Height="13" Stretch="Uniform" Margin="0,0,8,0" />
+                    <TextBlock Text="{Binding ToastMessage}" Foreground="{StaticResource BrushTextPrimary}" FontSize="12" FontWeight="SemiBold" VerticalAlignment="Center" />
+                </StackPanel>
             </Border>
         </Grid>
     </Border>

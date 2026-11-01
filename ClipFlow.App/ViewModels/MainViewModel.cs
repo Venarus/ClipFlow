@@ -194,8 +194,21 @@ public partial class MainViewModel : ObservableObject
 
     partial void OnCurrentSectionChanged(string value)
     {
+        OnPropertyChanged(nameof(SectionDisplayName));
         _ = LoadHistoryAsync();
     }
+
+    public string SectionDisplayName => CurrentSection switch
+    {
+        "Text" => "Text & Code",
+        "Images" => "Images",
+        "Links" => "Links & URLs",
+        "Files" => "Files & Folders",
+        "Favorites" => "Favorites",
+        "Pinned" => "Pinned Items",
+        "RecentlyUsed" => "Recently Used",
+        _ => "All Items"
+    };
 
     public async Task LoadHistoryAsync()
     {
@@ -214,7 +227,7 @@ public partial class MainViewModel : ObservableObject
             switch (CurrentSection)
             {
                 case "Text":
-                    filter.ContentType = ContentType.Text;
+                    filter.ContentTypes = [ContentType.Text, ContentType.RichText, ContentType.Html, ContentType.Code, ContentType.Email, ContentType.Phone];
                     break;
                 case "Images":
                     filter.ContentType = ContentType.Image;
@@ -277,17 +290,18 @@ public partial class MainViewModel : ObservableObject
     }
 
     [RelayCommand]
-    public void SelectSection(string section)
+    public async Task SelectSectionAsync(string section)
     {
-        if (section == "Settings")
+        if (string.Equals(section, "Settings", StringComparison.OrdinalIgnoreCase))
         {
             IsSettingsOpen = true;
+            return;
         }
-        else
-        {
-            IsSettingsOpen = false;
-            CurrentSection = section;
-        }
+
+        IsSettingsOpen = false;
+        CurrentSection = section;
+        OnPropertyChanged(nameof(SectionDisplayName));
+        await LoadHistoryAsync();
     }
 
     [RelayCommand]

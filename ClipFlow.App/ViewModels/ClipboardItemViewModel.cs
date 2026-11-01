@@ -76,6 +76,114 @@ public partial class ClipboardItemViewModel : ObservableObject
         _ => "Content"
     };
 
+    public bool IsImageFile
+    {
+        get
+        {
+            if (ContentType == ContentType.FileDrop && FilePaths != null && FilePaths.Count > 0)
+            {
+                var ext = Path.GetExtension(FilePaths[0])?.ToLowerInvariant();
+                return ext is ".png" or ".jpg" or ".jpeg" or ".bmp" or ".gif" or ".webp" or ".ico";
+            }
+            return false;
+        }
+    }
+
+    public string? FirstFilePath => FilePaths != null && FilePaths.Count > 0 ? FilePaths[0] : null;
+
+    public string FileExtension
+    {
+        get
+        {
+            if (!string.IsNullOrEmpty(FirstFilePath))
+            {
+                var ext = Path.GetExtension(FirstFilePath).TrimStart('.').ToUpperInvariant();
+                return string.IsNullOrEmpty(ext) ? "FILE" : (ext.Length > 4 ? ext[..4] : ext);
+            }
+            return "FILE";
+        }
+    }
+
+    public string FileDisplayName
+    {
+        get
+        {
+            if (FileCount > 1) return $"{FileCount} files";
+            if (!string.IsNullOrEmpty(FirstFilePath)) return Path.GetFileName(FirstFilePath);
+            return "File";
+        }
+    }
+
+    public bool HasImageThumbnail => (HasImage || IsImageFile) && ThumbnailSource != null;
+    public bool HasSystemFileIcon => ContentType == ContentType.FileDrop && !IsImageFile && ThumbnailSource != null;
+
+    public string DisplayTitle
+    {
+        get
+        {
+            if (ContentType == ContentType.Image)
+            {
+                return ImageWidth > 0 && ImageHeight > 0
+                    ? $"Image ({ImageWidth} × {ImageHeight} px)"
+                    : "Image";
+            }
+            if (ContentType == ContentType.FileDrop)
+            {
+                return FileDisplayName;
+            }
+            if (ContentType == ContentType.Color)
+            {
+                return ColorHex ?? "Color Code";
+            }
+            if (ContentType == ContentType.Url)
+            {
+                return Domain ?? TextContent ?? "URL";
+            }
+            if (!string.IsNullOrWhiteSpace(TextContent))
+            {
+                var firstLine = TextContent.Split(["\r\n", "\r", "\n"], StringSplitOptions.RemoveEmptyEntries).FirstOrDefault();
+                if (!string.IsNullOrWhiteSpace(firstLine))
+                {
+                    return firstLine.Trim();
+                }
+            }
+            return "Empty Item";
+        }
+    }
+
+    public string DisplaySnippet
+    {
+        get
+        {
+            if (ContentType == ContentType.Image)
+            {
+                return FormattedSize;
+            }
+            if (ContentType == ContentType.FileDrop)
+            {
+                return FirstFilePath ?? FormattedSize;
+            }
+            if (ContentType == ContentType.Color)
+            {
+                return ColorRgb ?? ColorHex ?? "";
+            }
+            if (ContentType == ContentType.Url)
+            {
+                return TextContent ?? "";
+            }
+            if (!string.IsNullOrWhiteSpace(TextContent))
+            {
+                var lines = TextContent.Split(["\r\n", "\r", "\n"], StringSplitOptions.RemoveEmptyEntries);
+                if (lines.Length > 1)
+                {
+                    return lines[1].Trim();
+                }
+                return TextContent.Trim();
+            }
+            return "";
+        }
+    }
+
     public string RelativeTime
     {
         get
@@ -109,6 +217,7 @@ public partial class ClipboardItemViewModel : ObservableObject
     {
         try
         {
+            // 1. Direct image
             var path = Model.ImageThumbnailPath ?? Model.ImageStoragePath;
             if (!string.IsNullOrEmpty(path) && File.Exists(path))
             {
@@ -120,6 +229,34 @@ public partial class ClipboardItemViewModel : ObservableObject
                 bi.EndInit();
                 bi.Freeze();
                 return bi;
+            }
+
+            // 2. Image from file drop
+            if (IsImageFile && !string.IsNullOrEmpty(FirstFilePath) && File.Exists(FirstFilePath))
+            {
+                var bi = new BitmapImage();
+                bi.BeginInit();
+                bi.UriSource = new Uri(FirstFilePath, UriKind.Absolute);
+                bi.CacheOption = BitmapCacheOption.OnLoad;
+                bi.DecodePixelWidth = 240;
+                bi.EndInit();
+                bi.Freeze();
+                return bi;
+            }
+
+            // 3. System file icon for non-image files
+            if (ContentType == ContentType.FileDrop && !string.IsNullOrEmpty(FirstFilePath) && File.Exists(FirstFilePath))
+            {
+                using var icon = System.Drawing.Icon.ExtractAssociatedIcon(FirstFilePath);
+                if (icon != null)
+                {
+                    var bs = System.Windows.Interop.Imaging.CreateBitmapSourceFromHIcon(
+                        icon.Handle,
+                        System.Windows.Int32Rect.Empty,
+                        BitmapSizeOptions.FromEmptyOptions());
+                    bs.Freeze();
+                    return bs;
+                }
             }
         }
         catch { }
