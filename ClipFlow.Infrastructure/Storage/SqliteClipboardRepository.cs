@@ -62,10 +62,17 @@ public class SqliteClipboardRepository : IClipboardStorageRepository, IDisposabl
             using var conn = new SqliteConnection(_connectionString);
             await conn.OpenAsync();
 
-            // Enable WAL mode for high concurrency and fast reads/writes
+            // Enable WAL mode and memory cache for maximum concurrency and ultra-low latency
             using (var walCmd = conn.CreateCommand())
             {
-                walCmd.CommandText = "PRAGMA journal_mode = WAL; PRAGMA synchronous = NORMAL; PRAGMA foreign_keys = ON;";
+                walCmd.CommandText = @"
+                    PRAGMA journal_mode = WAL;
+                    PRAGMA synchronous = NORMAL;
+                    PRAGMA foreign_keys = ON;
+                    PRAGMA temp_store = MEMORY;
+                    PRAGMA cache_size = -4000;
+                    PRAGMA mmap_size = 268435456;
+                ";
                 await walCmd.ExecuteNonQueryAsync();
             }
 
@@ -103,6 +110,9 @@ public class SqliteClipboardRepository : IClipboardStorageRepository, IDisposabl
                 CREATE INDEX IF NOT EXISTS idx_clipboard_fav ON ClipboardItems(IsFavorite);
                 CREATE INDEX IF NOT EXISTS idx_clipboard_pinned ON ClipboardItems(IsPinned);
                 CREATE INDEX IF NOT EXISTS idx_clipboard_category ON ClipboardItems(Category);
+                CREATE INDEX IF NOT EXISTS idx_clipboard_type_lastused ON ClipboardItems(ContentType, LastUsedAt DESC);
+                CREATE INDEX IF NOT EXISTS idx_clipboard_fav_lastused ON ClipboardItems(IsFavorite, LastUsedAt DESC);
+                CREATE INDEX IF NOT EXISTS idx_clipboard_pinned_lastused ON ClipboardItems(IsPinned, LastUsedAt DESC);
             ";
 
             using (var cmd = conn.CreateCommand())

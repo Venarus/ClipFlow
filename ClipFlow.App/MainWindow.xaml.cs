@@ -211,6 +211,7 @@ public partial class MainWindow : Window
         if (IsVisible && WindowState != WindowState.Minimized)
         {
             Hide();
+            System.Threading.Tasks.Task.Run(() => NativeMethods.TrimWorkingSet());
         }
         else
         {
@@ -239,6 +240,7 @@ public partial class MainWindow : Window
     private void MinimizeButton_Click(object sender, RoutedEventArgs e)
     {
         WindowState = WindowState.Minimized;
+        System.Threading.Tasks.Task.Run(() => NativeMethods.TrimWorkingSet());
     }
 
     private void MaximizeRestoreButton_Click(object sender, RoutedEventArgs e)
@@ -256,6 +258,7 @@ public partial class MainWindow : Window
         if (_viewModel.Settings.MinimizeToTrayOnClose)
         {
             Hide();
+            System.Threading.Tasks.Task.Run(() => NativeMethods.TrimWorkingSet());
         }
         else
         {
